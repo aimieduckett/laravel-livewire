@@ -28,6 +28,8 @@ module.exports = {
             spacing: {
                 22: "5.5rem",
                 70: "17.5rem",
+                76: "19rem",
+                104: "26rem",
                 175: "43rem",
             },
             maxWidth: {
@@ -49,5 +51,6 @@ module.exports = {
     plugins: [
         require("@tailwindcss/forms"),
         require("@tailwindcss/line-clamp"),
+        require("@tailwindcss/forms"),
     ],
 };
