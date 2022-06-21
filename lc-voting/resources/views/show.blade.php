@@ -57,7 +57,10 @@
                     <div>&bull;</div>
                     <div class="text-gray-900">3 Comments</div>
                 </div>
-                <div class="flex items-center space-x-2">
+                <div
+                    class="flex items-center space-x-2"
+                    x-data="{ isOpen: false }"
+                >
                     <div
                         class="bg-gray-200 text-xxs font-bold uppercase leading-none rounded-full text-center w-28 h-7 py-2 px-4"
                     >
@@ -65,6 +68,7 @@
                     </div>
                     <button
                         class="relative bg-gray-100 border hover:bg-gray-200 rounded-full h-7 transition duration-150 ease-in py-2 px-3"
+                        @click="isOpen = !isOpen"
                     >
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
@@ -80,7 +84,12 @@
                             />
                         </svg>
                         <ul
-                            class="hidden w-44 text-left font-semibold bg-white shadow-dialogue rounded-xl py-3 ml-4"
+                            class="absolute w-44 text-left font-semibold bg-white shadow-dialogue rounded-xl py-3 ml-4"
+                            x-cloak
+                            x-show="isOpen"
+                            x-transition
+                            @click.away="isOpen = false"
+                            @keydown.escape.window="isOpen = false"
                         >
                             <li>
                                 <a
@@ -106,15 +115,21 @@
 
     <div class="buttons-container flex items-center justify-between mt-5">
         <div class="flex items-center space-x-4 ml-6">
-            <div class="relative">
+            <div class="relative" x-data=" { isOpen: false }">
                 <button
                     type="button"
                     class="flex items-center justify-center h-11 w-32 text-sm bg-blue text-white font-semibold rounded-xl border border-blue hover:bg-blue-hover transition duration-150 ease-in px-6 py-3"
+                    @click="isOpen = !isOpen"
                 >
                     Reply
                 </button>
                 <div
                     class="absolute z-10 w-104 text-left font-semibold text-sm bg-white shadow-dialogue rounded-xl mt-2"
+                    x-show="isOpen"
+                    x-transition
+                    x-cloak
+                    @click.away="isOpen = false"
+                    @keydown.escape.window="isOpen = false"
                 >
                     <form action="#" class="space-y-4 px-4 py-6">
                         <div>
@@ -158,10 +173,11 @@
                 </div>
             </div>
 
-            <div class="relative">
+            <div class="relative" x-data="{ isOpen:false }">
                 <button
                     type="button"
                     class="flex items-center justify-center w-36 h-11 text-sm bg-gray-200 font-semibold rounded-xl border border-gray-200 hover:border-gray-400 transition duration-150 ease-in px-6 py-3"
+                    @click="isOpen = !isOpen"
                 >
                     <span>Set Status</span>
                     <svg
@@ -178,6 +194,11 @@
                 </button>
                 <div
                     class="absolute z-20 w-76 text-left font-semibold text-sm bg-white shadow-dialogue rounded-xl mt-2"
+                    x-show="isOpen"
+                    x-transition
+                    x-cloak
+                    @click.away="isOpen = false"
+                    @keydown.escape.window="isOpen = false"
                 >
                     <form action="#" class="space-y-4 px-4 py-6">
                         <div class="space-y-2">
@@ -339,9 +360,13 @@
                         <div>&bull;</div>
                         <div>10 hours ago</div>
                     </div>
-                    <div class="flex items-center space-x-2">
+                    <div
+                        class="flex items-center space-x-2"
+                        x-data=" { isOpen: false }"
+                    >
                         <button
                             class="relative bg-gray-100 border hover:bg-gray-200 rounded-full h-7 transition duration-150 ease-in py-2 px-3"
+                            @click="isOpen = !isOpen"
                         >
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -357,7 +382,12 @@
                                 />
                             </svg>
                             <ul
-                                class="hidden w-44 text-left font-semibold bg-white shadow-dialogue rounded-xl py-3 ml-4"
+                                class="absolute z-10 w-44 text-left font-semibold bg-white shadow-dialogue rounded-xl py-3 ml-4"
+                                x-show="isOpen"
+                                x-transition
+                                x-cloak
+                                @click.away="isOpen = false"
+                                @keydown.escape.window="isOpen = false"
                             >
                                 <li>
                                     <a
@@ -379,6 +409,7 @@
                 </div>
             </div>
         </div>
+
         <div
             class="is-admin comment-container relative bg-white rounded-xl flex mt-4"
         >
@@ -398,6 +429,7 @@
                     </div>
                 </div>
             </div>
+
             <div class="w-full mx-4 py-6">
                 <h4 class="text-xl font-semibold">
                     <a href="#" class="hover:underline"
@@ -433,7 +465,7 @@
                                 />
                             </svg>
                             <ul
-                                class="hidden w-44 text-left font-semibold bg-white shadow-dialogue rounded-xl py-3 ml-4"
+                                class="hidden absolute w-44 text-left font-semibold bg-white shadow-dialogue rounded-xl py-3 ml-4"
                             >
                                 <li>
                                     <a
@@ -455,6 +487,7 @@
                 </div>
             </div>
         </div>
+
         <div class="comment-container relative bg-white rounded-xl flex mt-4">
             <div class="px-4 py-6">
                 <div class="flex-none">
@@ -524,6 +557,6 @@
                 </div>
             </div>
         </div>
-        <!------ end comments container ------->
     </div>
+    <!------ end comments container ------->
 </x-app-layout>
